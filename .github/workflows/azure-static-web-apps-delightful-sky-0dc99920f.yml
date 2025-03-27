@@ -35,6 +35,9 @@ jobs:
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
+        env:
+          AZURE_SEARCH_SERVICE_ENDPOINT: "https://titleintelligencecogsearch.search.windows.net"
+          AZURE_SEARCH_INDEX_NAME: "bug-vector-index-20250305"
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DELIGHTFUL_SKY_0DC99920F }}
           action: "upload"

@@ -1,8 +1,0 @@
-{
-    "name": "api-only-app",
-    "version": "1.0.0",
-    "scripts": {
-      "build": "echo 'No frontend to build.'"
-    }
-  }
-  

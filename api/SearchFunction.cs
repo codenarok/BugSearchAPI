@@ -7,6 +7,10 @@ using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Azure.Identity;
 using System.Text.Json;
+using System.Web;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System;
 
 public class SearchFunction
 {
@@ -45,12 +49,12 @@ public class SearchFunction
                 Select = { "BugID", "SubmissionID", "RequirementNoFull", "BugType" }
             };
 
-            var results = await client.SearchAsync<SearchDocument>(query, options);
+            var results = await client.SearchAsync<dynamic>(query, options);
 
             var documents = new List<Dictionary<string, object>>();
             await foreach (var result in results.Value.GetResultsAsync())
             {
-                documents.Add(result.Document.ToDictionary(kv => kv.Key, kv => kv.Value));
+                documents.Add((Dictionary<string, object>)result.Document);
             }
 
             var json = JsonSerializer.Serialize(documents);

@@ -1,40 +1,50 @@
 {
-    "routes": [
-      {
-        "route": "/api/search",
-        "methods": ["get"],
-        "rewrite": "/api/search"
-      }
-    ],
-    "navigationFallback": {
-      "rewrite": "/index.html",
-      "exclude": ["/api/*"]
+  "routes": [
+    {
+      "route": "/api/getFunctionUrl",
+      "rewrite": "/api/getFunctionUrl"
     },
-    "platform": {
-      "apiRuntime": "dotnet-isolated"
+    {
+      "route": "/api/search",
+      "rewrite": "/api/search"
     },
-    "globalHeaders": {
-      "Access-Control-Allow-Origin": "*",
-      "Cache-Control": "no-store, must-revalidate, no-cache, max-age=0",
-      "X-Content-Type-Options": "nosniff"
-    },
-    "mimeTypes": {
-      ".js": "application/javascript",
-      ".jsx": "application/javascript"
-    },
-    "actions": [
-      {
-        "name": "Install OIDC Client from Core Package",
-        "run": "npm install @actions/core@1.6.0 @actions/http-client"
-      },
-      {
-        "name": "Get Id Token",
-        "uses": "actions/github-script@v6",
-        "id": "idtoken",
-        "with": {
-          "script": "const coredemo = require('@actions/core'); return await coredemo.getIDToken();",
-          "result-encoding": "string"
-        }
-      }
+    {
+      "route": "/*",
+      "rewrite": "/index.html"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/api/*",
+      "*.{js,css,png,gif,jpg,svg}"
     ]
-  }
+  },
+  "platform": {
+    "apiRuntime": "dotnet-isolated"
+  },
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": "*",
+    "Cache-Control": "no-store, must-revalidate, no-cache, max-age=0",
+    "X-Content-Type-Options": "nosniff"
+  },
+  "mimeTypes": {
+    ".js": "application/javascript",
+    ".jsx": "application/javascript"
+  },
+  "actions": [
+    {
+      "name": "Install OIDC Client from Core Package",
+      "run": "npm install @actions/core@1.6.0 @actions/http-client"
+    },
+    {
+      "name": "Get Id Token",
+      "uses": "actions/github-script@v6",
+      "id": "idtoken",
+      "with": {
+        "script": "const coredemo = require('@actions/core'); return await coredemo.getIDToken();",
+        "result-encoding": "string"
+      }
+    }
+  ]
+}

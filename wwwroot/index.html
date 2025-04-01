@@ -42,7 +42,7 @@
 
     async function getFunctionUrl() {
       try {
-        const response = await fetch('/api/getFunctionUrl'); // Call the Azure Function endpoint
+        const response = await fetch('/api/GetFunctionUrl'); // Call the Azure Function endpoint
         if (!response.ok) {
           throw new Error(`Failed to fetch function URL: ${response.status} - ${response.statusText}`);
         }

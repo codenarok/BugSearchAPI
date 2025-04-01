@@ -8,8 +8,22 @@
     }
     #results {
       margin-top: 20px;
-      border: 1px solid #ccc;
-      padding: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
     }
   </style>
 </head>
@@ -50,18 +64,22 @@
           return;
         }
 
-        // Display the results in a readable format
-        let resultsHtml = "<h2>Search Results:</h2><ul>";
+        // Display the results in a table
+        let tableHtml = "<h2>Search Results:</h2><table>";
+        tableHtml += "<thead><tr><th>Bug ID</th><th>Submission ID</th><th>Requirement</th><th>Bug Type</th></tr></thead>";
+        tableHtml += "<tbody>";
+
         data.forEach(item => {
-          resultsHtml += `<li>
-                            <strong>Bug ID:</strong> ${item.BugID || 'N/A'}<br>
-                            <strong>Submission ID:</strong> ${item.SubmissionID || 'N/A'}<br>
-                            <strong>Requirement:</strong> ${item.RequirementNoFull || 'N/A'}<br>
-                            <strong>Bug Type:</strong> ${item.BugType || 'N/A'}
-                          </li>`;
+          tableHtml += `<tr>
+                          <td>${item.BugID || 'N/A'}</td>
+                          <td>${item.SubmissionID || 'N/A'}</td>
+                          <td>${item.RequirementNoFull || 'N/A'}</td>
+                          <td>${item.BugType || 'N/A'}</td>
+                        </tr>`;
         });
-        resultsHtml += "</ul>";
-        resultsDiv.innerHTML = resultsHtml;
+
+        tableHtml += "</tbody></table>";
+        resultsDiv.innerHTML = tableHtml;
 
       } catch (error) {
         console.error("Error:", error);

@@ -35,7 +35,8 @@
       }
 
       try {
-        const response = await fetch(`/api/search?query=${query}`); // Adjusted path
+        const functionUrl = 'https://bugsearchapifunction-gre4a7anbyf9dgc6.westus2-01.azurewebsites.net/api/search'; // Replace with your actual function URL
+        const response = await fetch(`${functionUrl}?query=${query}`);
 
         if (!response.ok) {
           resultsDiv.textContent = `Error: ${response.status} - ${response.statusText}`;

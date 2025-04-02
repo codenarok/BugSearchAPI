@@ -40,20 +40,6 @@
     const queryInput = document.getElementById('query');
     const resultsDiv = document.getElementById('results');
 
-    async function getFunctionUrl() {
-      try {
-        const response = await fetch('/api/GetFunctionUrl'); // Call the Azure Function endpoint
-        if (!response.ok) {
-          throw new Error(`Failed to fetch function URL: ${response.status} - ${response.statusText}`);
-        }
-        return await response.text();
-      } catch (error) {
-        console.error("Error fetching function URL:", error);
-        resultsDiv.textContent = `Error: ${error.message}`;
-        return null;
-      }
-    }
-
     searchButton.addEventListener('click', async () => {
       const query = queryInput.value;
 
@@ -62,12 +48,10 @@
         return;
       }
 
-      const functionUrl = await getFunctionUrl();
-      if (!functionUrl) return;
-
       try {
-        const response = await fetch(`${functionUrl}?query=${query}`);
-
+        //const functionUrl = 'https://bugsearchapifunction-gre4a7anbyf9dgc6.westus2-01.azurewebsites.net/api/search'; // Replace with your actual function URL
+        //const response = await fetch(`${functionUrl}?query=${query}`);
+        const response = await fetch(`/api/search?query=${query}`);
         if (!response.ok) {
           resultsDiv.textContent = `Error: ${response.status} - ${response.statusText}`;
           return;

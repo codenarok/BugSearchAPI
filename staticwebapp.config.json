@@ -1,10 +1,6 @@
 {
   "routes": [
-    {
-      "route": "/api/getFunctionUrl",
-      "rewrite": "/api/getFunctionUrl"
-    },
-    {
+   {
       "route": "/api/search",
       "rewrite": "/api/search"
     },

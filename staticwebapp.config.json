@@ -1,10 +1,13 @@
 {
   "routes": [
-   {
+    {
+      // Restrict /api/search to authenticated users
       "route": "/api/search",
+      "allowedRoles": ["authenticated"], 
       "rewrite": "/api/search"
     },
     {
+      // Fallback for all other paths → index.html
       "route": "/*",
       "rewrite": "/index.html"
     }

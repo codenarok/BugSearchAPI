@@ -1,14 +1,12 @@
 {
   "routes": [
     {
-      "route": "/api/search",
-      "allowedRoles": ["authenticated"], 
-      "rewrite": "/api/search"
+      "route": "/api/*",
+      "allowedRoles": ["authenticated"]
     },
     {
       "route": "/*",
-      "allowedRoles": ["authenticated"], 
-      "rewrite": "/index.html"
+      "allowedRoles": ["authenticated"]
     }
   ],
   "navigationFallback": {
